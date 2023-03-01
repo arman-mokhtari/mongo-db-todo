@@ -1,0 +1,36 @@
+<% if(todos.length>0) {%>
+<ul class="list-unstyled" id="todo">
+  <% for(const todo of todos){ %>
+  <li>
+    <div
+      class="alert <%= todo.completed ? 'alert-success' : 'alert-secondary' %> d-flex align-items-center justify-content-around"
+    >
+      <% if(todo.completed) {%>
+
+      <del><%= todo.text %></del>
+      <a
+        href="/admin/delete-todo/<%= todo.id %>"
+        class="close fa fa-trash text-danger"
+      ></a>
+      <%} else {%> <%= todo.text %>
+      <div>
+        <a
+          href="/admin/delete-todo/<%= todo.id %>"
+          class="close fa fa-trash text-danger"
+        ></a>
+        <a
+          href="/admin/completed-todo/<%= todo.id %>"
+          class="close fa fa-check-square mr-2 text-success"
+        ></a>
+      </div>
+      <%} %>
+    </div>
+  </li>
+  <% } %>
+</ul>
+<% } else{ %>
+<div class="alert alert-warning w-50 mx-auto" role="alert">
+  <h4 class="alert-heading">هیچ کاری برای امروز نیست</h4>
+  <p>میتونی کارهای امروزت رو بالا بنویسی تا برات ثبت کنم</p>
+</div>
+<% } %>
